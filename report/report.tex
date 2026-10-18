@@ -11,6 +11,7 @@
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{float}
+\usepackage{balance}
 % CVPR two-column page geometry, folded into this standalone source.
 \setlength{\paperheight}{11in}
 \setlength{\paperwidth}{8.5in}
@@ -106,7 +107,7 @@ The 100-tree and 200-tree models tied on validation accuracy, so I froze $B=100$
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{../figures/bagging_metrics.pdf}
+\includegraphics[width=0.86\linewidth]{../figures/bagging_metrics.pdf}
 \caption{OOB accuracy, validation-set tree disagreement, and validation vote margin for bagging prefixes.}
 \label{fig:bagmetrics}
 \end{figure}
@@ -136,8 +137,8 @@ The single tree is very sure even when it is wrong. Masking cuts its accuracy by
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{../figures/bagging_examples.pdf}
-\caption{Two masked faces where bagging corrects the tree and two where both are wrong. The three largest nonzero vote counts are printed above each face.}
+\includegraphics[width=0.82\linewidth]{../figures/bagging_examples.pdf}
+\caption{Masked faces where bagging corrects the tree (first two) and where both models are wrong.}
 \label{fig:bagfaces}
 \end{figure}
 
@@ -196,8 +197,8 @@ Depth & 10 & 25 & 50 & 100 rounds\\
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.92\linewidth]{../figures/boosting_dynamics.pdf}
-\caption{Selected SAMME run. The learner error and weight move from round to round as hard images receive more mass.}
+\includegraphics[width=0.76\linewidth]{../figures/boosting_dynamics.pdf}
+\caption{Error and weight traces for the selected SAMME run.}
 \label{fig:boostdyn}
 \end{figure}
 
@@ -227,7 +228,7 @@ Bagging is slower because its trees are grown to full depth, but it is clearly b
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.88\linewidth]{../figures/boosting_heavy_face.pdf}
+\includegraphics[width=0.70\linewidth]{../figures/boosting_heavy_face.pdf}
 \caption{Training source index 204, class 20, receives the largest weight seen in the selected run. Red points mark rounds that misclassify it.}
 \label{fig:heavy}
 \end{figure}
@@ -257,7 +258,7 @@ Set & Model & Accuracy & Win share\\
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.72\linewidth]{../figures/bag_boost_mask_response.pdf}
+\includegraphics[width=0.56\linewidth]{../figures/bag_boost_mask_response.pdf}
 \caption{A test face where the two ensembles react differently to the mask.}
 \label{fig:response}
 \end{figure}
@@ -314,7 +315,7 @@ Depth & Model & Bias$^2$ & Var. & Accuracy & $L$ & $D$\\
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{../figures/depth_bias_variance.pdf}
+\includegraphics[width=0.82\linewidth]{../figures/depth_bias_variance.pdf}
 \caption{Bias squared, variance, and mean clean test accuracy as depth increases.}
 \label{fig:depthbv}
 \end{figure}
@@ -343,6 +344,7 @@ Boosting &28.75&37.50&0.9082&0.0185\\
 
 Bagging is the most stable useful model: its variance is close to boosting's, but its clean accuracy is much higher. The tree is most sensitive to the missing region, losing 35 points. Bagging loses 16.25 points. Boosting rises by 8.75 points after masking, but both of its scores are low; this is not meaningful resistance to missing data. The lowest-variance model is therefore not the model with the best test accuracy. Bias can dominate, as it does for boosting here.
 
+\balance
 \section{Reproduction notes}
 The archive contains the exact split in CSV and NPZ form, the JSON configuration, every table used here, plot files, the final run log, and the complete source. Running
 \begin{quote}\small
