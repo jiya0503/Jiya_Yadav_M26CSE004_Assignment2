@@ -10,6 +10,7 @@
 \usepackage{amssymb}
 \usepackage{enumitem}
 \usepackage{xcolor}
+\usepackage{float}
 % CVPR two-column page geometry, folded into this standalone source.
 \setlength{\paperheight}{11in}
 \setlength{\paperwidth}{8.5in}
@@ -37,7 +38,7 @@
 \title{Trees, Bagging, and Multiclass Boosting on Olivetti Faces}
 \author{Jiya Yadav\\Roll number: M26CSE004\\
 \small Submission repository: included in \texttt{Jiya\_Yadav\_M26CSE004\_Assignment2.zip}\\
-\small Code snapshot: \texttt{COMMIT\_PLACEHOLDER}}
+\small Code snapshot: \texttt{0679161a6a89}}
 
 \begin{document}
 \maketitle
@@ -105,7 +106,7 @@ The 100-tree and 200-tree models tied on validation accuracy, so I froze $B=100$
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{/Users/shreyansh/Documents/Dataset Paper/Jiya_Yadav_M26CSE004_Assignment2/figures/bagging_metrics.pdf}
+\includegraphics[width=\linewidth]{../figures/bagging_metrics.pdf}
 \caption{OOB accuracy, validation-set tree disagreement, and validation vote margin for bagging prefixes.}
 \label{fig:bagmetrics}
 \end{figure}
@@ -135,7 +136,7 @@ The single tree is very sure even when it is wrong. Masking cuts its accuracy by
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{/Users/shreyansh/Documents/Dataset Paper/Jiya_Yadav_M26CSE004_Assignment2/figures/bagging_examples.pdf}
+\includegraphics[width=\linewidth]{../figures/bagging_examples.pdf}
 \caption{Two masked faces where bagging corrects the tree and two where both are wrong. The three largest nonzero vote counts are printed above each face.}
 \label{fig:bagfaces}
 \end{figure}
@@ -195,7 +196,7 @@ Depth & 10 & 25 & 50 & 100 rounds\\
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.92\linewidth]{/Users/shreyansh/Documents/Dataset Paper/Jiya_Yadav_M26CSE004_Assignment2/figures/boosting_dynamics.pdf}
+\includegraphics[width=0.92\linewidth]{../figures/boosting_dynamics.pdf}
 \caption{Selected SAMME run. The learner error and weight move from round to round as hard images receive more mass.}
 \label{fig:boostdyn}
 \end{figure}
@@ -226,7 +227,7 @@ Bagging is slower because its trees are grown to full depth, but it is clearly b
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.88\linewidth]{/Users/shreyansh/Documents/Dataset Paper/Jiya_Yadav_M26CSE004_Assignment2/figures/boosting_heavy_face.pdf}
+\includegraphics[width=0.88\linewidth]{../figures/boosting_heavy_face.pdf}
 \caption{Training source index 204, class 20, receives the largest weight seen in the selected run. Red points mark rounds that misclassify it.}
 \label{fig:heavy}
 \end{figure}
@@ -256,7 +257,7 @@ Set & Model & Accuracy & Win share\\
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.72\linewidth]{/Users/shreyansh/Documents/Dataset Paper/Jiya_Yadav_M26CSE004_Assignment2/figures/bag_boost_mask_response.pdf}
+\includegraphics[width=0.72\linewidth]{../figures/bag_boost_mask_response.pdf}
 \caption{A test face where the two ensembles react differently to the mask.}
 \label{fig:response}
 \end{figure}
@@ -292,7 +293,7 @@ The single tree has the smallest measured bias but by far the largest variance. 
 \subsection{What depth changes}
 I repeated the calculation at depth 2, depth 8, and unlimited depth. At each depth I also built a 100-tree bagged model. The leaf size stayed at the frozen value of two.
 
-\begin{table}[t]
+\begin{table}[H]
 \centering
 \caption{Depth study over the same 30 resamples. $L$ is the mean occupied leaf count. $D$ is mean pairwise test disagreement among the 100 bagged trees.}
 \label{tab:bvdepth}
@@ -311,19 +312,20 @@ Depth & Model & Bias$^2$ & Var. & Accuracy & $L$ & $D$\\
 \end{tabular}
 \end{table}
 
-\begin{figure}[t]
+\begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{/Users/shreyansh/Documents/Dataset Paper/Jiya_Yadav_M26CSE004_Assignment2/figures/depth_bias_variance.pdf}
+\includegraphics[width=\linewidth]{../figures/depth_bias_variance.pdf}
 \caption{Bias squared, variance, and mean clean test accuracy as depth increases.}
 \label{fig:depthbv}
 \end{figure}
 
 Depth lowers bias and opens more occupied leaves, but the fitted tree becomes more dependent on the sampled faces. Single-tree variance rises from 0.0417 at depth two to 0.6503 without a depth limit. Bagging removes 0.0310, 0.1093, and 0.6253 variance at the three depths. It helps little at depth two because averaging cannot create class distinctions that the three-leaf trees never learned.
+The singleton-leaf fraction is zero at all three depths because the frozen minimum leaf size is two.
 
 The deepest setting gives the largest accuracy gain here: 32.00 points, compared with 30.29 at depth eight and 9.83 at depth two. That is a measured result for this split, not a rule that the deepest tree must always gain most. Its trees actually have lower pairwise disagreement (0.8125) than the shallower ensembles. The larger gain comes from combining low-bias trees whose individual predictions move strongly across resamples. Leaf capacity, disagreement, bias, and variance all matter together.
 
 \subsection{Final comparison}
-\begin{table}[t]
+\begin{table}[H]
 \centering
 \caption{The three selected models. Clean and masked columns use the single fixed split; bias and variance use the 30 resampled fits.}
 \label{tab:final}
