@@ -1,0 +1,8 @@
+running 30 resamples with 8 parallel workers
+[Parallel(n_jobs=8)]: Using backend LokyBackend with 8 concurrent workers.
+[Parallel(n_jobs=8)]: Done   2 tasks      | elapsed:  3.0min
+[Parallel(n_jobs=8)]: Done   9 tasks      | elapsed:  7.8min
+[Parallel(n_jobs=8)]: Done  19 out of  30 | elapsed: 13.6min remaining:  7.9min
+[Parallel(n_jobs=8)]: Done  23 out of  30 | elapsed: 13.8min remaining:  4.2min
+[Parallel(n_jobs=8)]: Done  27 out of  30 | elapsed: 18.9min remaining:  2.1min
+[Parallel(n_jobs=8)]: Done  30 out of  30 | elapsed: 19.1min finished

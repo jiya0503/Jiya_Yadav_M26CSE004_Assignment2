@@ -1,0 +1,11 @@
+name: jiya-ml-assignment2
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - numpy=2.3
+  - pandas=2.2
+  - matplotlib=3.11
+  - scikit-learn=1.9
+  - joblib=1.6
+  - pip

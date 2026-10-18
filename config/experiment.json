@@ -1,0 +1,28 @@
+{
+  "student": "Jiya Yadav",
+  "roll_number": "M26CSE004",
+  "seed": 26004,
+  "dataset": "fetch_olivetti_faces",
+  "split_per_identity": {
+    "train": 6,
+    "validation": 2,
+    "test": 2
+  },
+  "features": "raw flattened 64x64 pixels",
+  "mask": {
+    "rows_zero_indexed_half_open": [24, 40],
+    "columns_zero_indexed_half_open": [24, 40],
+    "value": 0
+  },
+  "tree_grid": {
+    "max_depth": [2, 4, 8, 16, null],
+    "min_samples_leaf": [1, 2, 4]
+  },
+  "bagging_estimators": [1, 5, 10, 25, 50, 100, 200],
+  "boosting": {
+    "algorithm": "SAMME implemented in src/run_experiments.py",
+    "weak_tree_depths": [1, 2, 3, 4],
+    "rounds": [10, 25, 50, 100]
+  },
+  "bias_variance_repetitions": 30
+}
